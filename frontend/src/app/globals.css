@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+:root {
+  --primary-color: #3b82f6; /* Blue-500 */
+  --primary-hover-color: #2563eb; /* Blue-600 */
+  --secondary-color: #6b7280; /* Gray-500 */
+  --secondary-hover-color: #4b5563; /* Gray-600 */
+  --danger-color: #ef4444; /* Red-500 */
+  --danger-hover-color: #dc2626; /* Red-600 */
+  --success-color: #10b981; /* Green-500 */
+  --success-hover-color: #059669; /* Green-600 */
+  --background-color: #f9fafb; /* Gray-50 */
+  --foreground-color: #1f2937; /* Gray-800 */
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 m-0;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  h1 {
+    @apply text-3xl font-bold mb-2;
+  }
+
+  h2 {
+    @apply text-2xl font-bold mb-2;
+  }
+
+  h3 {
+    @apply text-xl font-bold mb-2;
+  }
+
+  h4 {
+    @apply text-lg font-bold mb-2;
+  }
+
+  h5 {
+    @apply text-base font-bold mb-2;
+  }
+
+  h6 {
+    @apply text-sm font-bold mb-2;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  a {
+    @apply text-blue-600 hover:text-blue-800 transition-colors;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-md font-medium transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-blue-500 text-white hover:bg-blue-600;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-500 text-white hover:bg-gray-600;
+  }
+
+  .btn-outline {
+    @apply border border-gray-300 text-gray-700 hover:bg-gray-50;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 text-white hover:bg-red-600;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+  }
+
+  .form-input {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+
+  .form-error {
+    @apply mt-1 text-sm text-red-600;
+  }
+
+  .card {
+    @apply bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  .card-header {
+    @apply p-4 border-b border-gray-200;
+  }
+
+  .card-body {
+    @apply p-4;
+  }
+
+  .card-footer {
+    @apply p-4 border-t border-gray-200;
+  }
+}
