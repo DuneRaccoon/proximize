@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.dependencies import get_current_user
 from app.database import get_db
-from app.database.enums import WalletPassTypes
+from app.database.enums import WalletPassType
 from app.database.models.wallet_pass import WalletPass
 from app.database.models.wallet_pass_template import WalletPassTemplate
 from app.database.models.customer import Customer
@@ -196,7 +196,7 @@ async def delete_pass(
 @router.get("/{pass_id}/download", response_class=Response)
 async def download_pass(
     pass_id: str,
-    pass_type: WalletPassTypes = WalletPassTypes.APPLE,
+    pass_type: WalletPassType = WalletPassType.APPLE,
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ) -> Any:
@@ -213,22 +213,28 @@ async def download_pass(
     # In a real implementation, this would generate and return the actual pass file
     # For now, we'll just return a placeholder message
     
-    if pass_type == WalletPassTypes.APPLE:
+    if pass_type == WalletPassType.APPLE:
         return Response(
             content=json.dumps({"message": "This is a placeholder for an Apple Wallet pass file"}),
             media_type="application/vnd.apple.pkpass",
             headers={"Content-Disposition": f"attachment; filename=pass-{db_pass.serial_number}.pkpass"}
         )
-    elif pass_type == WalletPassTypes.GOOGLE:
+    elif pass_type == WalletPassType.GOOGLE:
         return Response(
             content=json.dumps({"message": "This is a placeholder for a Google Wallet pass file"}),
+            media_type="application/json",
+            headers={"Content-Disposition": f"attachment; filename=pass-{db_pass.serial_number}.json"}
+        )
+    elif pass_type == WalletPassType.SAMSUNG:
+        return Response(
+            content=json.dumps({"message": "This is a placeholder for a Samsung Wallet pass file"}),
             media_type="application/json",
             headers={"Content-Disposition": f"attachment; filename=pass-{db_pass.serial_number}.json"}
         )
     else:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Invalid pass type. Must be one of: [{', '.join([t.value for t in WalletPassTypes])}]",
+            detail=f"Invalid pass type. Must be one of: [{', '.join([t.value for t in WalletPassType])}]",
         )
 
 

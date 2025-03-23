@@ -11,6 +11,7 @@ class SubscriptionStatus(str, Enum):
     CANCELLED = 'cancelled'
     PENDING = 'pending'
     
-class WalletPassTypes(str, Enum):
+class WalletPassType(str, Enum):
     APPLE = 'apple'
     GOOGLE = 'google'
+    SAMSUNG = 'samsung'
